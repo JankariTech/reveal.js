@@ -12,12 +12,26 @@
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+		<style>
+			.front-page {
+				background-image: url("templates/assets/background.avif");
+			}
+			.front-page h1 {
+				color: #000000;
+			}
+			.second-page {
+				background-color: #6f4545;
+				background-size: cover;
+				background-position: center;
+				background-repeat: no-repeat;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section data-markdown="examples/layout-template.md">
+				</section>
 			</div>
 		</div>
 
@@ -25,6 +39,7 @@
 		<script src="plugin/notes/notes.js"></script>
 		<script src="plugin/markdown/markdown.js"></script>
 		<script src="plugin/highlight/highlight.js"></script>
+		<script src="https://unpkg.com/mustache@latest"></script>
 		<script>
 			// More info about initialization & config:
 			// - https://revealjs.com/initialization/

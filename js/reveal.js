@@ -2887,7 +2887,7 @@ export default function( revealElement, options ) {
 		showPreview,
 		hidePreview: closeOverlay,
 
-		// Adds or removes all internal event listeners
+		// Adds or removes all internal event listengit reers
 		addEventListeners,
 		removeEventListeners,
 		dispatchEvent,
