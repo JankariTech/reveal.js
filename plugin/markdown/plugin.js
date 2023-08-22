@@ -200,23 +200,22 @@ const Plugin = () => {
 
 		// flatten the hierarchical stack, and insert <section data-markdown> tags
 		for( let i = 0, len = sectionStack.length; i < len; i++ ) {
-			let classMetadata = '';
 			if (parsedMetadata) {
 				options.metadata = parsedMetadata.slides[i];
-				classMetadata = ' class=' + options.metadata.slideType;
+				options.attributes = ' class=' + options.metadata.slideType;
 			}
 			// vertical
 			if( sectionStack[i] instanceof Array ) {
 				markdownSections += '<section '+ options.attributes +'>';
 
 				sectionStack[i].forEach( function( child ) {
-					markdownSections += '<section data-markdown' + classMetadata +'>' + createMarkdownSlide( child, options ) + '</section>';
+					markdownSections += '<section data-markdown>' + createMarkdownSlide( child, options ) + '</section>';
 				} );
 
 				markdownSections += '</section>';
 			}
 			else {
-				markdownSections += '<section '+ options.attributes +' data-markdown' + classMetadata +'>' + createMarkdownSlide( sectionStack[i], options ) + '</section>';
+				markdownSections += '<section '+ options.attributes +' data-markdown>' + createMarkdownSlide( sectionStack[i], options ) + '</section>';
 			}
 		}
 
