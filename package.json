@@ -39,6 +39,7 @@
     "babel-plugin-transform-html-import-to-string": "0.0.1",
     "colors": "^1.4.0",
     "core-js": "^3.12.1",
+    "decktape": "^3.10.0",
     "fitty": "^2.3.0",
     "glob": "^7.1.7",
     "gulp": "^4.0.2",

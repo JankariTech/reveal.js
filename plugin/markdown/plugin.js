@@ -151,7 +151,6 @@ const Plugin = () => {
 			wasHorizontal = true,
 			content,
 			sectionStack = [],
-			isMetadata = true,
 			metadata,
 			parsedMetadata;
 
@@ -170,9 +169,8 @@ const Plugin = () => {
 			// pluck slide content from markdown input
 			content = markdown.substring( lastIndex, matches.index );
 
-			if (isMetadata) {
+			if (content.indexOf('metadata:') === 0) {
 				metadata = content;
-				isMetadata = false;
 			} else if( isHorizontal && wasHorizontal ) {
 				// add to horizontal stack
 				sectionStack.push( content );
@@ -201,7 +199,7 @@ const Plugin = () => {
 		// flatten the hierarchical stack, and insert <section data-markdown> tags
 		for( let i = 0, len = sectionStack.length; i < len; i++ ) {
 			if (parsedMetadata) {
-				options.metadata = parsedMetadata.slides[i];
+				options.metadata = parsedMetadata.metadata[i];
 				options.attributes = ' class=' + options.metadata.slideType;
 			}
 			// vertical
