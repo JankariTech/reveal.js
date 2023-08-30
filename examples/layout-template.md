@@ -1,32 +1,31 @@
 metadata:
-  - slideType: title-page
+  - slideType: title-slide
     images:
       - templates/assets/logo.png
-  - slideType: only-text
-  - slideType: text-image-image
+  - slideType: title-content-slide
+  - slideType: title-two-image-slide
     images:
       - examples/assets/image1.png
       - examples/assets/image2.png
-  - slideType: only-image
+  - slideType: image-slide
     images:
       - examples/assets/image1.png
-  - slideType: image-image
+  - slideType: two-image-slide
     images:
       - examples/assets/image1.png
       - examples/assets/image2.png
-  - slideType: thank-you-page
+  - slideType: end-slide
     images:
-      - templates/assets/solid.png
+      - examples/assets/image2.png
 ---
-# Title Page
-### Presenter Name Goes Here
-#### Date Goes Here
+# Title of Presentation
+#### Name of Presenter
 ---
-# Only Text Title Goes Here
-Content goes here
+# Title of Second Slide
+Content of Second Slide
 ---
-# Text-Image-Image Title Goes Here
-Content goes here
+# Title of Third Slide
+Content of Third Slide
 ---
 
 ---
