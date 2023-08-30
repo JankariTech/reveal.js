@@ -10,7 +10,9 @@
   "scripts": {
     "test": "gulp test",
     "start": "gulp serve",
-    "build": "gulp build"
+    "build": "gulp build",
+    "export-pdf": "node ./utils/exporter.js pdf",
+    "export-html": "node ./utils/exporter.js html"
   },
   "author": {
     "name": "Hakim El Hattab",
