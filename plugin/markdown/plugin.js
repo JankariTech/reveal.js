@@ -187,6 +187,7 @@ const Plugin = () => {
 			try {
 				parsedMetadata = yaml.load(metadata);
 			} catch (error) {
+				// TODO: handle error and show on slide
 				console.error("Error while parsing metadata", error)
 			}
 		}
