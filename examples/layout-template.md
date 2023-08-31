@@ -1,34 +1,37 @@
 metadata:
   - slideType: title-slide
     images:
-      - templates/assets/logo.png
+      - https://placehold.co/200x50
   - slideType: title-content-slide
   - slideType: title-two-image-slide
     images:
-      - examples/assets/image1.png
-      - examples/assets/image2.png
+      - https://placehold.co/400x300
+      - https://placehold.co/400x300
   - slideType: image-slide
     images:
-      - examples/assets/image1.png
+      - https://placehold.co/800x600
   - slideType: two-image-slide
     images:
-      - examples/assets/image1.png
-      - examples/assets/image2.png
+      - https://placehold.co/400x500
+      - https://placehold.co/400x500
   - slideType: end-slide
     images:
-      - examples/assets/image2.png
+      - https://placehold.co/600x400
 ---
 # Title of Presentation
-#### Name of Presenter
+## Prarup Gurung
 ---
-# Title of Second Slide
-Content of Second Slide
+# Title Content
+Content with title
+- lorem ipsum dolor sit amet, consectetur adipiscing elit
+- sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
 ---
-# Title of Third Slide
-Content of Third Slide
----
+# Title Two Image
+**Bold Content**
 
 ---
 
 ---
-# Thank You
+
+---
+# Title End Slide
