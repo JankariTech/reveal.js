@@ -12,6 +12,7 @@
     "start": "gulp serve",
     "build": "gulp build",
     "export-pdf": "node ./utils/exporter.js pdf",
+    "export-pdf-docker": "docker run --rm -t --net=host -v `pwd`:/slides astefanutti/decktape http://localhost:8000 exports/slides.pdf",
     "export-html": "node ./utils/exporter.js html"
   },
   "author": {
