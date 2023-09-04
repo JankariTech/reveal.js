@@ -452,7 +452,7 @@ const Plugin = () => {
 				return tempDiv.textContent;
 			} else {
 				console.error('Failed to fetch template. Status: ' + xhr.status);
-				throw new Error(errorMessage);
+				return null
 			}
 		} catch (error) {
 			console.error('Error:', error);
