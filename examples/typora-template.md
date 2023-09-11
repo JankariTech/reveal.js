@@ -1,50 +1,47 @@
+---
+description: This is a template for a presentation
+logo: https://placehold.co/200x50
+presenterName: Prarup Gurung
+slideType: title-content-slide
+---
 ```yaml
 slideType: title-slide
-image: 
-	- https://placehold.co/200x50
+images: 
+  - https://placehold.co/200x50
 ```
-
 # Title Slide
-
 ## Name of Presenter
-
 ---
-
-```yaml
-slideType: text-content
+```yml
+images:
+    - https://placehold.co/800x600
 ```
-
-# Text Content Slide
-
-Content of the slide
-
+# NO SLIDE TYPE
+Content of the chapter 1
 ---
-
-```yaml
-slideType: image
-image: 
-	- https://placehold.co/400x600
+```yml
+slideType: image-slide
+images:
+  - https://placehold.co/800x600
 ```
-
-# Image Title
-
+# Chapter 1.1
 ---
-
 ```yaml
-slideType: two-image
-image:
-	- https://placehold.co/200x200
-	- https://placehold.co/200x200
 ```
-
-# Two Image Slide
-
+# NO METADATA YAML
 ---
-
+```yaml
+slideType: two-image-slide
+images:
+  - https://placehold.co/400x600
+  - https://placehold.co/400x600
+```
+---
+# NO METADATA ONLY CONTENT
+---
 ```yaml
 slideType: end-slide
-image:
-	- https://placehold.co/200x300
+images:
+  - https://placehold.co/900x500
 ```
-
 # End Slide

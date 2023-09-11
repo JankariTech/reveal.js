@@ -1,3 +1,5 @@
 <script type="x-tmpl-mustache">
-<img width="800" height="600" src="{{images}}" alt="First Image">
+{{#metadata.images}}
+<img width="800" height="600" src="{{metadata.images}}" alt="First Image">
+{{/metadata.images}}
 </script>

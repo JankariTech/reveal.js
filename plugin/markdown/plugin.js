@@ -6,7 +6,7 @@
 
 import { marked } from 'marked';
 import yaml from "js-yaml";
-import Mustache from "mustache";
+import Mustache from "mustache"
 
 const DEFAULT_SLIDE_SEPARATOR = '\r?\n---\r?\n',
 	  DEFAULT_VERTICAL_SEPARATOR = null,
@@ -150,9 +150,9 @@ const Plugin = () => {
 			isHorizontal,
 			wasHorizontal = true,
 			content,
-			sectionStack = [],
-			metadata,
-			parsedMetadata;
+			sectionStack = [];
+
+		[ markdown, options ] = parseFrontMatter(markdown, options)
 
 		// iterate until all blocks between separators are stacked up
 		while( matches = separatorRegex.exec( markdown ) ) {
@@ -169,27 +169,17 @@ const Plugin = () => {
 			// pluck slide content from markdown input
 			content = markdown.substring( lastIndex, matches.index );
 
-			if (content.indexOf('metadata:') === 0) {
-				metadata = content;
-			} else if( isHorizontal && wasHorizontal ) {
+			if( isHorizontal && wasHorizontal ) {
 				// add to horizontal stack
 				sectionStack.push( content );
-			} else {
+			}
+			else {
 				// add to vertical stack
 				sectionStack[sectionStack.length-1].push( content );
 			}
 
 			lastIndex = separatorRegex.lastIndex;
 			wasHorizontal = isHorizontal;
-		}
-
-		if (metadata){
-			try {
-				parsedMetadata = yaml.load(metadata);
-			} catch (error) {
-				// TODO: handle error and show on slide
-				console.error("Error while parsing metadata", error)
-			}
 		}
 
 		// add the remaining slide
@@ -199,22 +189,22 @@ const Plugin = () => {
 
 		// flatten the hierarchical stack, and insert <section data-markdown> tags
 		for( let i = 0, len = sectionStack.length; i < len; i++ ) {
-			if (parsedMetadata) {
-				options.metadata = parsedMetadata.metadata[i];
-				options.attributes = ' class=' + options.metadata.slideType;
-			}
+			let newOptions = {...options}
+
 			// vertical
 			if( sectionStack[i] instanceof Array ) {
-				markdownSections += '<section '+ options.attributes +'>';
+				markdownSections += '<section '+ newOptions.attributes +'>';
 
 				sectionStack[i].forEach( function( child ) {
-					markdownSections += '<section data-markdown>' + createMarkdownSlide( child, options ) + '</section>';
+					[content, newOptions] = parseMarkdown(child, newOptions)
+					markdownSections += '<section '+ newOptions.attributes +' data-markdown>' + createMarkdownSlide( content, newOptions ) + '</section>';
 				} );
 
 				markdownSections += '</section>';
 			}
 			else {
-				markdownSections += '<section '+ options.attributes +' data-markdown>' + createMarkdownSlide( sectionStack[i], options ) + '</section>';
+				[content, newOptions] = parseMarkdown(sectionStack[i], newOptions)
+				markdownSections += '<section '+ newOptions.attributes +' data-markdown>' + createMarkdownSlide( content, newOptions ) + '</section>';
 			}
 		}
 
@@ -437,6 +427,43 @@ const Plugin = () => {
 
 	}
 
+	function parseFrontMatter (content, options) {
+		options = getSlidifyOptions( options)
+		let frontMatterRegex = /^(-{3}(?:\n|\r)([\w\W]+?)(?:\n|\r)-{3})?([\w\W]*)*/
+		if (frontMatterRegex.test(content)) {
+			frontMatterRegex.lastIndex = 0;
+			const parsedParts = frontMatterRegex.exec(content)
+			content = parsedParts[3] || '';
+			options.metadata = yaml.load(parsedParts[2]);
+		}
+		return [content, options];
+	}
+
+	function parseMarkdown (markdown, options) {
+		const yamlRegex =  /```(yaml|yml)\n([\s\S]*?)```(\n[\s\S]*)?/g;
+		if (yamlRegex.test(markdown)){
+			yamlRegex.lastIndex = 0;
+
+			const markdownParts = yamlRegex.exec(markdown)
+			const metadata = markdownParts[2] || {}
+			markdown = markdownParts[3] || ''
+			if (metadata){
+				try {
+					const metadataYAML = yaml.load(metadata);
+					options.metadata = {...options.metadata, ...metadataYAML}
+					options.attributes = 'class=' + options.metadata.slideType;
+				} catch (error) {
+					markdown = "Error while parsing metadata"
+					console.error(markdown, error)
+				}
+			}
+		} else if (options.metadata){
+			options.attributes = 'class=' + options.metadata.slideType;
+		}
+
+		return [markdown, options]
+	}
+
 	function renderTemplate(content, options) {
 		try {
 			options = getSlidifyOptions(options)
@@ -446,7 +473,7 @@ const Plugin = () => {
 			xhr.send()
 
 			if (xhr.status === 200) {
-				const renderedTemplate = Mustache.render(xhr.responseText, { content: content, images: options.metadata.images });
+				const renderedTemplate = Mustache.render(xhr.responseText, { content: content, metadata: options.metadata });
 				const tempDiv = document.createElement('div');
 				tempDiv.innerHTML = renderedTemplate;
 				return tempDiv.textContent;
