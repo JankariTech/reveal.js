@@ -30,17 +30,17 @@
     "presentation"
   ],
   "devDependencies": {
-    "@babel/core": "^7.23.2",
-    "@babel/eslint-parser": "^7.22.15",
-    "@babel/preset-env": "^7.23.2",
+    "@babel/core": "^7.23.7",
+    "@babel/eslint-parser": "^7.23.3",
+    "@babel/preset-env": "^7.23.8",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-terser": "^0.4.4",
     "babel-plugin-transform-html-import-to-string": "2.0.0",
     "colors": "^1.4.0",
-    "core-js": "^3.33.1",
-    "fitty": "^2.3.7",
+    "core-js": "^3.35.0",
+    "fitty": "^2.4.2",
     "front-matter": "^4.0.2",
     "glob": "^10.3.10",
     "gulp": "^4.0.2",
@@ -57,8 +57,8 @@
     "mustache": "^4.2.0",
     "node-qunit-puppeteer": "^2.1.2",
     "qunit": "^2.20.0",
-    "rollup": "^4.1.5",
-    "sass": "^1.69.5",
+    "rollup": "^4.9.4",
+    "sass": "^1.69.7",
     "yargs": "^17.7.2"
   },
   "overrides": {
